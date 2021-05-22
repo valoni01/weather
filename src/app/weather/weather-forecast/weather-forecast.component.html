@@ -1,0 +1,13 @@
+  <div class="card" *ngFor="let forc of forecast['list']; index as i " style="text-align: center;">
+    <div class="container" *ngIf="i < 5">
+      <img width="50" src="../assets/weather-icon/weather.svg"  alt="weather">
+      <br>
+       Time {{forc.dt_txt | date:'shortTime' }}
+       <p >
+         Temp:{{forc.main.temp}}&deg;
+       </p>
+       <p>
+         wind: {{forc.wind.speed}}
+       </p>
+    </div>
+</div>

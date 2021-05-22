@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="container">
+    <div>
+       <h4><b>{{weather.name}}</b></h4>
+        <img src="../../../assets/weather-icon/weather.svg" alt="weather">
+    </div>
+    <p>
+      Temperature: {{weather['main']['temp'] | convertTemp}}
+    </p>
+    <p>Wind: {{weather['wind']['speed']}}</p>
+  </div>
+</div>
+

@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+  background-color: rgb(186, 216, 226);
+  background-image: url('./assets/weather-icon/europe.svg');
+}
+
+
+@media screen and (max-width:760px) {
+  .card{
+     width:100% !important;
+     margin:2%;
+  }
+}
