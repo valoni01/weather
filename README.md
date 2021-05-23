@@ -15,9 +15,12 @@ the `weather-list component` for displaying the list of the weather conditions i
 
 # performance
 
-Because of the size of the app, there was no need to import or use some of the provided angular features and files. Also, I implemented caching for the `forecast component` to reduce http calls.
-I used the onPush strategy on the child component as well. I removed reductant files, and
-also used the container directive to reduce reductant elements 
+Because of the size of the app, there was no need to import or use some of the provided angular features and files. 
+Also, I implemented caching for the `forecast component` to reduce http calls.
+I used the onPush strategy on the child component as well.
+I removed reductant files, 
+I used the container directive to reduce reductant elements 
+I used `forkJoin` to ensure that the list component is rendered only when the 5 requests are   completed
 
 # Testing
 

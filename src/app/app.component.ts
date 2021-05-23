@@ -2,7 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { weatherForcast, weatherResponse } from 'src/shared/model/weatherModel';
 import { EuWeatherService } from './eu-weather.service';
 import { environment } from '../environments/environment'
-import { Observable, Subscription} from 'rxjs';
+import { forkJoin, Observable, Subscription, timer} from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -11,16 +12,13 @@ import { Observable, Subscription} from 'rxjs';
 })
 export class AppComponent implements OnInit  {
 
-  recentWeather:weatherResponse;
   weatherCities = environment.cities;
-  recentCityData: Observable<weatherResponse>[] = [];
   forecastRes = new weatherForcast();
   isOpen=false;
-  realTimeWeather =[];
-  // forcastRe$:Subscription;
+  realTimeWeather:Observable<weatherResponse>[];
+  refereshInterval = 1000;
 
   @ViewChild('tpl',{static: true}) myDiv: ElementRef;
-
 
 
   constructor(private weatherserv: EuWeatherService){
@@ -32,13 +30,15 @@ export class AppComponent implements OnInit  {
  }
 
 
-//This itereates through the 5 cities and return the weather details
+// Iterate through the 5 cities and use the forkJoin to ensure all request are resolved before rendering
  getMapt(cities){
+  let mreqObs$ : Observable<weatherResponse>[] = [];
   for(let a = 0; a < cities.length; a++ ){
-      this.weatherserv.getCityWeather(cities[a]).subscribe((r)=>{
-       this.realTimeWeather.push(r)
-      })
-   }
+    mreqObs$.push(this.weatherserv.getCityWeather(cities[a]));
+  }
+  forkJoin(mreqObs$).subscribe((res:any)=>{
+    this.realTimeWeather = res
+  })
  }
 
 //This returns the forecast of a particular weather for the next few hours
