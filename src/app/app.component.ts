@@ -2,8 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { weatherForcast, weatherResponse } from 'src/shared/model/weatherModel';
 import { EuWeatherService } from './eu-weather.service';
 import { environment } from '../environments/environment'
-import { forkJoin, Observable, Subscription, timer} from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { forkJoin, Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-root',
@@ -17,6 +17,8 @@ export class AppComponent implements OnInit  {
   isOpen=false;
   realTimeWeather:Observable<weatherResponse>[];
   refereshInterval = 1000;
+  cityWeatherReqObs$ : Observable<weatherResponse>[] = [];
+
 
   @ViewChild('tpl',{static: true}) myDiv: ElementRef;
 
@@ -32,11 +34,10 @@ export class AppComponent implements OnInit  {
 
 // Iterate through the 5 cities and use the forkJoin to ensure all request are resolved before rendering
  getMapt(cities){
-  let mreqObs$ : Observable<weatherResponse>[] = [];
   for(let a = 0; a < cities.length; a++ ){
-    mreqObs$.push(this.weatherserv.getCityWeather(cities[a]));
+    this.cityWeatherReqObs$.push(this.weatherserv.getCityWeather(cities[a]));
   }
-  forkJoin(mreqObs$).subscribe((res:any)=>{
+  forkJoin(this.cityWeatherReqObs$).subscribe((res:any)=>{
     this.realTimeWeather = res
   })
  }
@@ -63,9 +64,6 @@ openNav(city) {
   this.isOpen = true;
 }
 
-// ngOnDestroy(): void {
-//   this.forcastRe$.unsubscribe();
-// }
 
 
 }

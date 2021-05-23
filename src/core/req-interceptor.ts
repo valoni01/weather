@@ -22,8 +22,9 @@ export class ReqInterceptor implements HttpInterceptor {
   // insert the request and append the secret key and also cache error if any
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       const cloneReq = request.clone({url: `${request.url}${this.secret_key}`});
-      return next.handle(cloneReq).pipe(
-          catchError(err => throwError(this.errorHandler(err))),
+       return next.handle(cloneReq).pipe(
+           catchError(err => throwError(this.errorHandler(err))
+        ),
       )
     }
 
@@ -41,7 +42,6 @@ export class ReqInterceptor implements HttpInterceptor {
         default: {
             return alert(`Unknown Server Error: ${error.message}`);
         }
-
     }
     }
 }
