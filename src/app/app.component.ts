@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { weatherForcast, weatherResponse } from 'src/shared/model/weatherModel';
 import { EuWeatherService } from './eu-weather.service';
 import { environment } from '../environments/environment'
 import { forkJoin, Observable } from 'rxjs';
+import { weatherForcast, weatherResponse } from './shared/model/weatherModel';
 
 
 @Component({

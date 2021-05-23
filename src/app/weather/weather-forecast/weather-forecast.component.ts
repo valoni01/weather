@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { weatherForcast } from 'src/shared/model/weatherModel';
+import { weatherForcast } from 'src/app/shared/model/weatherModel';
 
 
 @Component({

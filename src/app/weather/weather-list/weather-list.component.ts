@@ -1,5 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
-import { weatherResponse } from 'src/shared/model/weatherModel';
+import { weatherResponse } from 'src/app/shared/model/weatherModel';
 
 @Component({
   selector: 'app-weather-list',

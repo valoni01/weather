@@ -3,7 +3,7 @@ import { environment } from '../environments/environment'
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, timer } from 'rxjs';
 import {  catchError, tap } from 'rxjs/operators'
-import { weatherForcast, weatherResponse } from 'src/shared/model/weatherModel';
+import { weatherForcast, weatherResponse } from './shared/model/weatherModel';
 
 @Injectable({
   providedIn: 'root'
