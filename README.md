@@ -16,7 +16,7 @@ the `weather-list component` for displaying the list of the weather conditions i
 # performance
 
 Because of the size of the app, there was no need to import or use some of the provided angular features and files. 
-Also, I implemented caching for the `forecast component` to reduce http calls.
+I implemented caching for the `forecast component` to reduce http calls.(I didn't do this for the weath list, because I would expect the data to change frequently)
 I used the onPush strategy on the child component as well.
 I removed reductant files, 
 I used the container directive to reduce reductant elements 
@@ -42,7 +42,7 @@ Although I wanted to implement other interesting features and capabilities, like
 
 # Angular info
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12
 
 ## Development server
 

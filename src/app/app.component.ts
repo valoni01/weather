@@ -61,7 +61,7 @@ openNav(city) {
 
  closeNav() {
   this.myDiv.nativeElement.style.width = "0";
-  this.isOpen = true;
+  this.isOpen = false;
 }
 
 
